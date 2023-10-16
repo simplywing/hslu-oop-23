@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author JoëlAmmann
+ * @author Joël Ammann
  */
 public class PointTest {
     

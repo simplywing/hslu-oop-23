@@ -6,7 +6,7 @@ package ch.hslu.oop.sw3;
 
 /**
  *
- * @author JoëlAmmann
+ * @author Joël Ammann
  */
 public class Point {
     private int x, y;

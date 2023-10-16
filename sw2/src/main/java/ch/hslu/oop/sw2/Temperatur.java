@@ -6,7 +6,7 @@ package ch.hslu.oop.sw2;
 
 /**
  *
- * @author JoëlAmmann
+ * @author Joël Ammann
  */
 public class Temperatur {
 

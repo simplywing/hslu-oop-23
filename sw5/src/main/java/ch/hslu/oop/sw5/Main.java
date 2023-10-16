@@ -6,7 +6,7 @@ package ch.hslu.oop.sw5;
 
 /**
  *
- * @author JoëlAmmann
+ * @author Joël Ammann
  */
 public class Main {
 
