@@ -29,9 +29,8 @@ public class Point implements Cloneable {
     }
 
     @Override
-    public Object clone() throws CloneNotSupportedException {
-        return super.clone();
+    public Point clone() {
+        return new Point (this.x, this.y);
     }
-
 
 }

@@ -39,10 +39,14 @@ public class Line {
         return (new Point(this.p1.getX(), this.p1.getY()));
     }
 
-/*     public Point getP1_V2() {
-        return (Point) this.p1.clone();
+    public Point getP1clone() {
+        return this.p1.clone();
     }
- */
+
+    public Point getP2clone() {
+        return this.p1.clone();
+    }
+
     public Point getP2() {
         return (new Point(this.p2.getX(), this.p2.getY()));
     }
