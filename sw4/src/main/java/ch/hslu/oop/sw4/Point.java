@@ -14,8 +14,8 @@ public class Point implements Cloneable {
      * @param pointToCopy
      */
     public Point(Point pointToCopy) {
-        this.x = pointToCopy.getX();
-        this.y = pointToCopy.getY();
+        this.x = pointToCopy.x;
+        this.y = pointToCopy.y;
     }
 
     public Point() {
