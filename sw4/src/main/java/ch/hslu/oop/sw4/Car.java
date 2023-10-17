@@ -4,8 +4,8 @@ public class Car implements Switchable {
 
     private boolean isSwitchedOn = false;
     
-    private final Motor motor;
-    private final Wiper wiper;
+    private final Switchable motor;
+    private final Switchable wiper;
 
     public Car(){
         this.motor = new Motor();

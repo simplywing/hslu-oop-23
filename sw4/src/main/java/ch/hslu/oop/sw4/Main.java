@@ -24,6 +24,7 @@ public class Main {
 
         System.out.println("Turining the car off...");
         myCar.switchOff();
+        
         System.out.println("The car is switched on: " + myCar.isSwitchedOn());
 
         
@@ -46,15 +47,15 @@ public class Main {
         System.out.println(myLine.getP1().getX() + "; " + myLine.getP1().getY());
 
 
-        System.out.println("Now returning the start point and modifying it OUTSIDE of the line...");
+        System.out.println("Now returning the start point and modifying it OUTSIDE of the line object...");
 
-        Point myStartingPoint = myLine.getP1Reference();
+        //Point myStartingPoint = myLine.getP1Reference();
 
-        // Point myStartingPoint = myLine.getP1();
+        Point myStartingPoint = myLine.getP1();
         
-        // Point myStartingPoint = myLine.getP1clone();
+        // Point myStartingPoint = myLine.getP1Clone();
 
-        // Point myStartingPoint = myLine.getP1copy();
+        // Point myStartingPoint = myLine.getP1Copy();
                 
         myStartingPoint.setX(5f);
         
