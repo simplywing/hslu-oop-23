@@ -3,7 +3,11 @@ package ch.hslu.oop.sw4;
 public class Motor implements Switchable {
 
     private boolean isSwitchedOn = false;
-    private int rpm = 0;
+    private int rpm;
+
+    public Motor() {
+        this.rpm = 0;
+    }
 
     @Override
     public void switchOn() {
@@ -23,6 +27,10 @@ public class Motor implements Switchable {
     @Override
     public boolean isSwitchedOff() {
         return !this.isSwitchedOn;
+    }
+
+    public final int getRpm() {
+        return this.rpm;
     }
     
 }
