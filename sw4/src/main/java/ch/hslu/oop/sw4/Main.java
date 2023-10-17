@@ -12,6 +12,8 @@ public class Main {
 
     public static void main(String[] args) {
         
+        
+        
         System.out.println("Creating a new Car...");
         Car myCar = new Car();
 
@@ -24,11 +26,19 @@ public class Main {
         myCar.switchOff();
         System.out.println("The car is switched on: " + myCar.isSwitchedOn());
 
+        
+        
+        
+        
 
         System.out.println("");
-        System.out.println("------------------------");
+        System.out.println("-----------------------------------------------");
         System.out.println("");
 
+        
+        
+        
+        
         System.out.println("Creating a new Line...");
         Line myLine = new Line();
         
