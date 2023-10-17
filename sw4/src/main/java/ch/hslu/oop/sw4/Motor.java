@@ -33,4 +33,12 @@ public class Motor implements Switchable {
         return this.rpm;
     }
     
+    public final void speedUp() {
+        this.rpm += 100;
+    }
+    
+    public final void slowDown() {
+        this.rpm -= 100;
+    }
+    
 }
