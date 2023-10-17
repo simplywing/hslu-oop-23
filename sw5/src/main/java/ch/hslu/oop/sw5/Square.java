@@ -11,8 +11,8 @@ public class Square extends Rectangle {
     }
 
     /**
-     * This method is implemented as a safeguard to prevent a square with unequal widths.
-     * @param newWidth new size for the quare
+     * This method is implemented as a safeguard to make sure the square stays square.
+     * @param newWidth new size for the square
      * @param newHeight ! will be ignored ! 
      */
     @Override
