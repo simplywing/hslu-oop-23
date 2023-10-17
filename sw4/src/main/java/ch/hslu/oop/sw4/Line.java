@@ -20,7 +20,7 @@ public class Line {
     }
 
     /**
-     * BAD EXAMPLE - This method returns a reference to the internal Point object
+     * BAD EXAMPLE - This method returns a reference to the internal Point object.
      * @return Point object of starting point
      */
     public Point getP1Reference() {
@@ -28,36 +28,86 @@ public class Line {
     }
 
     /**
-     * BAD EXAMPLE - This method returns a reference to the internal Point object
+     * BAD EXAMPLE - This method returns a reference to the internal Point object.
      * @return Point object of end point
      */
     public Point getP2Reference() {
         return this.p2;
     }
-     
+
+
+    /**
+     * GOOD EXAMPLE - This method returns a new Point object.
+     * @return Point object with coordinates of line start point
+     */
     public Point getP1() {
         return (new Point(this.p1.getX(), this.p1.getY()));
     }
 
-    public Point getP1clone() {
-        return this.p1.clone();
-    }
-
-    public Point getP2clone() {
-        return this.p1.clone();
-    }
-
+    /**
+     * GOOD EXAMPLE - This method returns a new Point object.
+     * @return Point object with coordinates of line end point
+     */
     public Point getP2() {
         return (new Point(this.p2.getX(), this.p2.getY()));
     }
 
-    public void setP1(final Point p1) {
+
+    /**
+     * GOOD EXAMPLE - This method returns a clone of the internal Point object.
+     * @return cloned Point object with coordinates of line start point
+     */
+    public Point getP1Clone() {
+        return this.p1.clone();
+    }
+
+    /**
+     * GOOD EXAMPLE - This method returns a clone of the internal Point object.
+     * @return cloned Point object with coordinates of line end point
+     */
+    public Point getP2Clone() {
+        return this.p1.clone();
+    }
+
+
+
+    /**
+     * GOOD EXAMPLE - This method returns a new Point copied from the internal Point object.
+     * @return copied Point object with coordinates of line start point
+     */
+    public Point getP1Copy() {
+        return new Point(this.p1);
+    }
+    
+    /**
+     * GOOD EXAMPLE - This method returns a new Point copied from the internal Point object.
+     * @return copied Point object with coordinates of line end point
+     */
+    public Point getP2Copy() {
+        return new Point(this.p2);
+    }
+
+    
+    //achtung, kapselung verletzt
+    public void setP1Reference(final Point p1) {
         this.p1 = p1;
     }
 
-    public void setP2(final Point p2) {
+    public void setP2Reference(final Point p2) {
         this.p2 = p2;
     }
+
+
+
+
+    public void setP1(final Point p1) {
+        this.p1 = new Point(p1);
+    }
+
+    public void setP2(final Point p2) {
+        this.p2 = new Point(p2);
+    }
+
 
     public void setP1(final float x, final float y) {
         this.p1.setX(x);

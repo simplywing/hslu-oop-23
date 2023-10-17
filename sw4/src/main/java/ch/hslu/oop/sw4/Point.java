@@ -9,6 +9,15 @@ public class Point implements Cloneable {
         this.y = y;
     }
 
+    /**
+     * Create a new Point by copying an existing Point.
+     * @param pointToCopy
+     */
+    public Point(Point pointToCopy) {
+        this.x = pointToCopy.getX();
+        this.y = pointToCopy.getY();
+    }
+
     public Point() {
     }
 
@@ -27,7 +36,7 @@ public class Point implements Cloneable {
     public float getY() {
         return this.y;
     }
-
+    
     @Override
     public Point clone() {
         return new Point (this.x, this.y);
