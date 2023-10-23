@@ -20,5 +20,17 @@ public class Main {
         Element Hydrogen = new HydrogenElement();
         System.out.println(Hydrogen.getAggregateState(0f));
 
+
+        System.out.println("creating a new Motor and switching it on/off 5 times...");
+
+        Motor myMotor = new Motor();
+        myMotor.switchOn();
+        myMotor.switchOff();
+        myMotor.switchOn();
+        myMotor.switchOff();
+        myMotor.switchOn();
+
+        System.out.println("switch count: " + myMotor.getSwitchCount());
+
     }
 }
