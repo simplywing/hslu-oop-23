@@ -1,7 +1,7 @@
 package ch.hslu.oop.sw5;
 
 public abstract class Shape {
-    private int x, y;
+    protected int x, y;
 
     protected Shape(int x, int y) {
         this.x = x;

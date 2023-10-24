@@ -1,23 +1,27 @@
 package ch.hslu.oop.sw5;
 
-public class Square extends Rectangle {
+public class Square extends Shape {
+    private Rectangle rectangle;
     
     public Square(int x, int y, int size){
-        super(x, y, size, size);
+        super(x, y);
+        
+        //Position explicitly 0,0 - not used
+        this.rectangle = new Rectangle(0, 0, size, size);
     }
 
     public final void changeDimensions(int newSize) {
-        super.changeDimensions(newSize, newSize);
+        this.rectangle.changeDimensions(newSize, newSize);
     }
 
-    /**
-     * This method is implemented as a safeguard to make sure the square stays square.
-     * @param newWidth new size for the square
-     * @param newHeight ! will be ignored ! 
-     */
     @Override
-    public void changeDimensions(int newWidth, int newHeight) {
-        super.changeDimensions(newWidth, newWidth);
+    public final int getPerimeter(){
+        return this.rectangle.getPerimeter();
+    }
+
+    @Override
+    public final int getArea(){
+        return this.rectangle.getArea();
     }
 
 }

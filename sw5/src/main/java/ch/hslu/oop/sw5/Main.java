@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello World!");
 
-        Rectangle mySquare = new Square(10, 20, 10);
+        Square mySquare = new Square(10, 20, 10);
 
         System.out.println(mySquare.getArea());
 
