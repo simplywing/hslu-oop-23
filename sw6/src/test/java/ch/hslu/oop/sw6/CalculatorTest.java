@@ -41,13 +41,15 @@ public class CalculatorTest {
         assertEquals(51d, sum);
     }
 
-    @Test void testAdditionMaxLongMinLong(){
+    @Test 
+    public void testAdditionMaxLongMinLong(){
         Calculator calc = new Calculator();
         long sum = calc.addition(Long.MAX_VALUE, Long.MIN_VALUE);
         assertEquals(-1l, sum);
     }
 
-    @Test void testAdditionMaxLong(){
+    @Test 
+    public void testAdditionMaxLong(){
         Calculator calc = new Calculator();
         long sum = calc.addition(Long.MAX_VALUE, Long.MAX_VALUE);
         assertEquals(-2l, sum);
