@@ -1,6 +1,8 @@
-package ch.hslu.oop.sw6;
+package ch.hslu.oop.sw7;
 
-public class Point {
+import java.util.Objects;
+
+public class Point implements Comparable<Point> {
     private float x = 0;
     private float y = 0;
     
@@ -52,6 +54,30 @@ public class Point {
             (float) (Math.sin(angle) * length)
         );
     }
+
+    @Override
+    public final boolean equals(final Object object) {
+        if(object == this){
+            return true;
+        }
+        return (object instanceof Point p)
+            && (Float.compare(this.x, p.x) == 0)
+            && (Float.compare(this.y, p.y) == 0);
+    }
+
+    @Override
+    public final int hashCode() {
+        return Objects.hash(this.x, this.y);
+    }
+
+    @Override
+    public final int compareTo(Point other) {
+        if(this == other){
+            return 0;
+        }
+        return Float.compare(this.x, other.x);
+
+    } 
 
 
 }
