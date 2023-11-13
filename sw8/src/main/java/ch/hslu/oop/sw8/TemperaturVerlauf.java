@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public final class TemperaturVerlauf implements TemperatureHistory {
+public final class TemperaturVerlauf implements MeasurementHistory<Temperature> {
 
     private final Collection<Temperature> temps = new ArrayList<>();
 
@@ -30,13 +30,23 @@ public final class TemperaturVerlauf implements TemperatureHistory {
     }
 
     @Override
-    public Temperature getMax() {
-        return Collections.max(this.temps);
+    public Optional<Temperature> getMax() {
+        if(this.getCount() > 0){
+            return Optional.of(Collections.max(this.temps));
+        } 
+        else {
+            return Optional.empty();
+        }
     }
 
     @Override
-    public Temperature getMin() {
-        return Collections.min(this.temps);
+    public Optional<Temperature> getMin() {
+        if(this.getCount() > 0){
+            return Optional.of(Collections.min(this.temps));
+        } 
+        else {
+            return Optional.empty();
+        }
     }
 
     @Override

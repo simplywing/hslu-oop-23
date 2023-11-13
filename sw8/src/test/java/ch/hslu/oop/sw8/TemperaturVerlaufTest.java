@@ -15,7 +15,7 @@ public class TemperaturVerlaufTest {
 
     @Test
     public void testTemperaturVerlaufAdd() {
-        TemperatureHistory myTempVerlauf = new TemperaturVerlauf();
+        MeasurementHistory<Temperature> myTempVerlauf = new TemperaturVerlauf();
 
         myTempVerlauf.add(new Temperature(45f));
         myTempVerlauf.add(new Temperature(45f));
@@ -26,7 +26,7 @@ public class TemperaturVerlaufTest {
 
     @Test
     public void testTemperaturVerlaufClear() {
-        TemperatureHistory myTempVerlauf = new TemperaturVerlauf();
+        MeasurementHistory<Temperature> myTempVerlauf = new TemperaturVerlauf();
 
         myTempVerlauf.add(new Temperature(45f));
         myTempVerlauf.add(new Temperature(-3f));
@@ -37,26 +37,36 @@ public class TemperaturVerlaufTest {
 
     @Test
     public void testTemperaturVerlaufGetMax() {
-        TemperatureHistory myTempVerlauf = new TemperaturVerlauf();
+        MeasurementHistory<Temperature> myTempVerlauf = new TemperaturVerlauf();
 
         myTempVerlauf.add(new Temperature(45f));
         myTempVerlauf.add(new Temperature(-3f));
-        assertEquals(45f, myTempVerlauf.getMax().getCelsius());
+        assertEquals(45f, myTempVerlauf.getMax().get().getCelsius());
     }
 
     @Test
     public void testTemperaturVerlaufGetMin() {
-        TemperatureHistory myTempVerlauf = new TemperaturVerlauf();
+        MeasurementHistory<Temperature> myTempVerlauf = new TemperaturVerlauf();
 
         myTempVerlauf.add(new Temperature(45f));
         myTempVerlauf.add(new Temperature(-3f));
         myTempVerlauf.add(new Temperature(-3f));
-        assertEquals(-3f, myTempVerlauf.getMin().getCelsius());
+        assertEquals(-3f, myTempVerlauf.getMin().get().getCelsius());
+    }
+
+    @Test
+    public void testTemperaturVerlaufGetMinEmpty() {
+        MeasurementHistory<Temperature> myTempVerlauf = new TemperaturVerlauf();
+
+        if(myTempVerlauf.getMin().isPresent())
+        {
+            fail("TemperaturVerlauf is empty, therefore getMin() should return an empty Optional");
+        }
     }
 
     @Test
     public void testTemperaturVerlaufAverage() {
-        TemperatureHistory myTempVerlauf = new TemperaturVerlauf();
+        MeasurementHistory<Temperature> myTempVerlauf = new TemperaturVerlauf();
 
         myTempVerlauf.add(new Temperature(45f));
         myTempVerlauf.add(new Temperature(-3f));
@@ -66,7 +76,7 @@ public class TemperaturVerlaufTest {
 
     @Test
     public void testTemperaturVerlaufAverageEmpty() {
-        TemperatureHistory myTempVerlauf = new TemperaturVerlauf();
+        MeasurementHistory<Temperature> myTempVerlauf = new TemperaturVerlauf();
 
         myTempVerlauf.add(new Temperature(45f));
         myTempVerlauf.add(new Temperature(-3f));
