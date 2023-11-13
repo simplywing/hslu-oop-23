@@ -5,11 +5,10 @@ import java.util.Optional;
 import java.util.Collection;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 
 public final class TemperaturVerlauf implements TemperatureHistory {
 
-    private final Collection<Temperature> temps = new HashSet<>();
+    private final Collection<Temperature> temps = new ArrayList<>();
 
     public TemperaturVerlauf() {
 

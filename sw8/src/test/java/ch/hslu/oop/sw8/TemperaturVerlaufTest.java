@@ -18,9 +18,10 @@ public class TemperaturVerlaufTest {
         TemperatureHistory myTempVerlauf = new TemperaturVerlauf();
 
         myTempVerlauf.add(new Temperature(45f));
+        myTempVerlauf.add(new Temperature(45f));
         myTempVerlauf.add(new Temperature(-3f));
 
-        assertEquals(2, myTempVerlauf.getCount());
+        assertEquals(3, myTempVerlauf.getCount());
     }
 
     @Test
