@@ -1,7 +1,6 @@
 package ch.hslu.oop.sw9;
 
 
-import java.text.spi.NumberFormatProvider;
 import java.util.Scanner;
 
 public class Main {
