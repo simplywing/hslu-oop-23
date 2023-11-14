@@ -10,19 +10,22 @@ public class Main {
         String input;
         Scanner scanner = new Scanner(System.in);
 
-        do { System.out.println("Bitte Temperatur eingeben (oder 'exit' zum Beenden): ");
+        do { System.out.println("Enter a temperature (or 'exit' to end the program): ");
             input = scanner.next();
             try {
                 float value = Float.parseFloat(input);
-                var temp = Temperature.fromKelvin(value);
+                var temp = Temperature.fromCelsius(value);
                 System.out.println(temp.toString());
             }
             catch (NumberFormatException e){
                 System.out.println("Could not convert Input to Float");
             }
+            catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
         } while (!"exit".equals(input));
 
-        System.out.println("Programm beendet.");
+        System.out.println("program end.");
     }
 }
 

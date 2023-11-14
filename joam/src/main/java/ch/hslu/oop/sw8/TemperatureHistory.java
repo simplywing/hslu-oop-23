@@ -5,11 +5,11 @@ import java.util.Collection;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public final class TemperaturVerlauf implements MeasurementHistory<Temperature> {
+public final class TemperatureHistory implements MeasurementHistory<Temperature> {
 
     private final Collection<Temperature> temps = new ArrayList<>();
 
-    public TemperaturVerlauf() {
+    public TemperatureHistory() {
 
     }
 
@@ -50,7 +50,7 @@ public final class TemperaturVerlauf implements MeasurementHistory<Temperature> 
 
     @Override
     public Optional<Temperature> getAverage() {
-        if(this.temps.size() < 1){
+        if(this.temps.isEmpty()){
             return Optional.empty();
         }
 

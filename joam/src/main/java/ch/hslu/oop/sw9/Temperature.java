@@ -16,7 +16,15 @@ public final class Temperature implements Comparable<Temperature> {
      * @param celsius value in celsius.
      */
     public Temperature(float celsius) {
-        this.celsius = Temperature.validateCelsius(celsius);
+        this.celsius = validateCelsius(celsius);
+    }
+
+    /**
+     * Creates a new temperature object from a given temperature object.
+     * @param temperature temperature object to copy
+     */
+    public Temperature(Temperature temperature) {
+        this.celsius = temperature.celsius;
     }
 
     /**
@@ -26,8 +34,8 @@ public final class Temperature implements Comparable<Temperature> {
      */
     public static Temperature fromKelvin(float kelvin) {
         return new Temperature(
-                Temperature.validateCelsius(
-                        Temperature.convertKelvinToCelsius(kelvin)
+                validateCelsius(
+                        convertKelvinToCelsius(kelvin)
                 )
         );
     }
@@ -38,7 +46,7 @@ public final class Temperature implements Comparable<Temperature> {
      * @return temperature object
      */
     public static Temperature fromCelsius(float celsius) {
-        return new Temperature(Temperature.validateCelsius(celsius));
+        return new Temperature(validateCelsius(celsius));
     }
 
     /**
@@ -64,7 +72,7 @@ public final class Temperature implements Comparable<Temperature> {
      * @param celsius temperature in celsius
      */
     public void setCelsius(float celsius) {
-        this.celsius = Temperature.validateCelsius(celsius);
+        this.celsius = validateCelsius(celsius);
     }
 
     /**
@@ -73,7 +81,7 @@ public final class Temperature implements Comparable<Temperature> {
      * @param kelvin temperature in celsius
      */
     public void setKelvin(float kelvin) {
-        this.celsius = Temperature.validateCelsius(Temperature.convertKelvinToCelsius(kelvin));
+        this.celsius = validateCelsius(convertKelvinToCelsius(kelvin));
     }
 
     /**

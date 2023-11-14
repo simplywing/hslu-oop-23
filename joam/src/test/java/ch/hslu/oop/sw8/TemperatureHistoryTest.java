@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author JoëlAmmann
  */
-public class TemperaturVerlaufTest {
+public class TemperatureHistoryTest {
 
     @Test
     public void testTemperaturVerlaufAdd() {
-        MeasurementHistory<Temperature> myMeasurementHistory = new TemperaturVerlauf();
+        MeasurementHistory<Temperature> myMeasurementHistory = new TemperatureHistory();
 
         myMeasurementHistory.add(new Temperature(45f));
         myMeasurementHistory.add(new Temperature(45f));
@@ -26,7 +26,7 @@ public class TemperaturVerlaufTest {
 
     @Test
     public void testTemperaturVerlaufClear() {
-        MeasurementHistory<Temperature> myMeasurementHistory = new TemperaturVerlauf();
+        MeasurementHistory<Temperature> myMeasurementHistory = new TemperatureHistory();
 
         myMeasurementHistory.add(new Temperature(45f));
         myMeasurementHistory.add(new Temperature(-3f));
@@ -37,7 +37,7 @@ public class TemperaturVerlaufTest {
 
     @Test
     public void testTemperaturVerlaufGetMax() {
-        MeasurementHistory<Temperature> myMeasurementHistory = new TemperaturVerlauf();
+        MeasurementHistory<Temperature> myMeasurementHistory = new TemperatureHistory();
 
         myMeasurementHistory.add(new Temperature(45f));
         myMeasurementHistory.add(new Temperature(-3f));
@@ -46,7 +46,7 @@ public class TemperaturVerlaufTest {
 
     @Test
     public void testTemperaturVerlaufGetMin() {
-        MeasurementHistory<Temperature> myMeasurementHistory = new TemperaturVerlauf();
+        MeasurementHistory<Temperature> myMeasurementHistory = new TemperatureHistory();
 
         myMeasurementHistory.add(new Temperature(45f));
         myMeasurementHistory.add(new Temperature(-3f));
@@ -56,7 +56,7 @@ public class TemperaturVerlaufTest {
 
     @Test
     public void testTemperaturVerlaufGetMinEmpty() {
-        MeasurementHistory<Temperature> myMeasurementHistory = new TemperaturVerlauf();
+        MeasurementHistory<Temperature> myMeasurementHistory = new TemperatureHistory();
 
         if(myMeasurementHistory.getMin().isPresent())
         {
@@ -66,7 +66,7 @@ public class TemperaturVerlaufTest {
 
     @Test
     public void testTemperaturVerlaufAverage() {
-        MeasurementHistory<Temperature> myMeasurementHistory = new TemperaturVerlauf();
+        MeasurementHistory<Temperature> myMeasurementHistory = new TemperatureHistory();
 
         myMeasurementHistory.add(new Temperature(45f));
         myMeasurementHistory.add(new Temperature(-3f));
@@ -76,7 +76,7 @@ public class TemperaturVerlaufTest {
 
     @Test
     public void testTemperaturVerlaufAverageEmpty() {
-        MeasurementHistory<Temperature> myMeasurementHistory = new TemperaturVerlauf();
+        MeasurementHistory<Temperature> myMeasurementHistory = new TemperatureHistory();
 
         myMeasurementHistory.add(new Temperature(45f));
         myMeasurementHistory.add(new Temperature(-3f));
