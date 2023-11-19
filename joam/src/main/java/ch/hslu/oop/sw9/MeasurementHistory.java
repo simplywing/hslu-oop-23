@@ -15,7 +15,7 @@ public interface MeasurementHistory<T> {
     public void clear();
 
     /**
-     * Returns the ammount of measurement values stored at this time.
+     * Returns the amount of measurement values stored at this time.
      * @return The count of all measurement values.
      */
     public int getCount();

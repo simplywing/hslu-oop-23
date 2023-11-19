@@ -2,13 +2,18 @@ package ch.hslu.oop.sw9;
 
 import java.util.Objects;
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
 /**
  * @author Joël Ammann
  */
 public final class Temperature implements Comparable<Temperature> {
-    private float celsius;
+    private final float celsius;
     public static final float KELVIN_OFFSET = 273.15f;
     private static final float CELSIUS_LOWERLIMIT = -KELVIN_OFFSET;
+
+    private static final Logger LOG = LoggerFactory.getLogger(Temperature.class);
 
     /**
      * Creates a new temperature object with given Celsius value.
@@ -33,11 +38,7 @@ public final class Temperature implements Comparable<Temperature> {
      * @return temperature object
      */
     public static Temperature fromKelvin(float kelvin) {
-        return new Temperature(
-                validateCelsius(
-                        convertKelvinToCelsius(kelvin)
-                )
-        );
+        return new Temperature(validateCelsius(convertKelvinToCelsius(kelvin)));
     }
 
     /**
@@ -64,24 +65,6 @@ public final class Temperature implements Comparable<Temperature> {
      */
     public float getKelvin() {
         return Temperature.convertCelsiusToKelvin(this.celsius);
-    }
-
-    /**
-     * Sets the current temperature to the given value
-     *
-     * @param celsius temperature in celsius
-     */
-    public void setCelsius(float celsius) {
-        this.celsius = validateCelsius(celsius);
-    }
-
-    /**
-     * Sets the current temperature to the given value
-     *
-     * @param kelvin temperature in celsius
-     */
-    public void setKelvin(float kelvin) {
-        this.celsius = validateCelsius(convertKelvinToCelsius(kelvin));
     }
 
     /**
@@ -137,6 +120,7 @@ public final class Temperature implements Comparable<Temperature> {
 
     private static float validateCelsius(float celsius){
         if(celsius < Temperature.CELSIUS_LOWERLIMIT){
+            LOG.error(String.format("Illegal temperature: [%s]", celsius));
             throw new IllegalArgumentException("Temperature cannot be lower than 0 Kelvin or -273.15 Celsius.");
         }
         else {

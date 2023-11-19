@@ -25,7 +25,6 @@ public class TemperaturTest {
      */
     @org.junit.jupiter.api.Test
     public void testGetAmbientTemperatureKelvin() {
-        System.out.println("getAmbientTemperatureKelvin");
         Temperatur instance = new Temperatur(0f);
         float expResult = 273.15f;
         float result = instance.getAmbientTemperatureKelvin();
@@ -37,12 +36,9 @@ public class TemperaturTest {
      */
     @org.junit.jupiter.api.Test
     public void testGetAmbientTemperatureFarenheit() {
-        System.out.println("getAmbientTemperatureFarenheit");
         Temperatur instance = new Temperatur(0f);
         float expResult = 32f;
         float result = instance.getAmbientTemperatureFarenheit();
         assertEquals(expResult, result, 0);
     }
-    
-    
 }

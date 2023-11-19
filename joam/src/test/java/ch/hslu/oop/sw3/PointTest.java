@@ -18,7 +18,6 @@ public class PointTest {
     
     @org.junit.jupiter.api.Test
     public void testGetQuadrant1() {
-        System.out.println("getQuadrant -> 1");
         Point instance = new Point(1,1);
         int expResult = 1;
         int result = instance.getQuadrant();
@@ -26,7 +25,6 @@ public class PointTest {
     }
 
     public void testGetQuadrant2() {
-        System.out.println("getQuadrant -> 2");
         Point instance = new Point(-1,1);
         int expResult = 2;
         int result = instance.getQuadrant();
@@ -34,7 +32,6 @@ public class PointTest {
     }
 
     public void testGetQuadrant3() {
-        System.out.println("getQuadrant -> 3");
         Point instance = new Point(-1,-1);
         int expResult = 3;
         int result = instance.getQuadrant();
@@ -42,7 +39,6 @@ public class PointTest {
     }
 
     public void testGetQuadrant4() {
-        System.out.println("getQuadrant -> 4");
         Point instance = new Point(1,-1);
         int expResult = 4;
         int result = instance.getQuadrant();

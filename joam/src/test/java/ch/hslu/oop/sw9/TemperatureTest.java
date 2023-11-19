@@ -33,14 +33,6 @@ public class TemperatureTest {
 	}
 
 	@Test
-	public void testTemperatureSetKelvin() {
-		Temperature t1 = new Temperature(15f);
-		t1.setKelvin(0f);
-
-		assertEquals(0, Float.compare(t1.getCelsius(), -273.15f));
-	}
-
-	@Test
 	public void testTemperatureConvertCelsiusToKelvin() {
 		assertEquals(273.15f, Temperature.convertCelsiusToKelvin(0));
 	}
@@ -48,14 +40,6 @@ public class TemperatureTest {
 	@Test
 	public void testTemperatureConvertKelvinToCelsius() {
 		assertEquals(-273.15f, Temperature.convertKelvinToCelsius(0));
-	}
-
-	@Test
-	public void testTemperatureSetCelsius() {
-		Temperature t1 = new Temperature(15f);
-		t1.setCelsius(0f);
-
-		assertEquals(0, Float.compare(t1.getCelsius(), 0f));
 	}
 
 	@Test

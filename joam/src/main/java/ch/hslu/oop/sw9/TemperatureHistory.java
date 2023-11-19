@@ -1,5 +1,8 @@
 package ch.hslu.oop.sw9;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -9,17 +12,21 @@ public final class TemperatureHistory implements MeasurementHistory<Temperature>
 
     private final Collection<Temperature> temps = new ArrayList<>();
 
+    private static final Logger LOG = LoggerFactory.getLogger(TemperatureHistory.class);
+
     public TemperatureHistory() {
 
     }
 
     @Override
     public void add(Temperature temp) {
+        LOG.debug(String.format("adding temperature: %s", temp.toString()));
         this.temps.add(temp);
     }
 
     @Override
     public void clear() {
+        LOG.debug("clearing temperatures");
         this.temps.clear();
     }
 
