@@ -27,6 +27,7 @@ public class Main {
             catch (IllegalArgumentException e){
                 LOG.warn(e.getMessage());
             }
+
         } while (!"exit".equals(input));
 
         LOG.info("Program End.");

@@ -118,7 +118,7 @@ public final class Temperature implements Comparable<Temperature> {
         return Float.compare(this.celsius, other.celsius);
     }
 
-    private static float validateCelsius(float celsius){
+    private static float validateCelsius(float celsius) {
         if(celsius < Temperature.CELSIUS_LOWERLIMIT){
             LOG.error(String.format("Illegal temperature: [%s]", celsius));
             throw new IllegalArgumentException("Temperature cannot be lower than 0 Kelvin or -273.15 Celsius.");
