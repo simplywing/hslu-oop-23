@@ -22,21 +22,21 @@ public final class Motor implements Switchable {
     public Motor() {
     }
 
-    public Motor(PropertyChangeListener motorPropertyChangeListener){
+    public Motor(PropertyChangeListener motorPropertyChangeListener) {
         this.addPropertyChangeListener(motorPropertyChangeListener);
     }
 
-    public void addPropertyChangeListener(PropertyChangeListener listener){
-        if(listener != null)
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        if (listener != null)
             this.listeners.add(listener);
     }
 
-    public void removePropertyChangeListener(PropertyChangeListener listener){
-        if(listener != null)
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        if (listener != null)
             this.listeners.remove(listener);
     }
-    
-    private void firePropertyChangeEvent(PropertyChangeEvent e){
+
+    private void firePropertyChangeEvent(PropertyChangeEvent e) {
         for (final PropertyChangeListener listener :
                 this.listeners) {
             listener.propertyChange(e);
@@ -95,7 +95,7 @@ public final class Motor implements Switchable {
         final int oldRpm = this.rpm;
         this.rpm -= ((this.rpm >= SPEEDUP_INTERVAL_RPM) ? 1 : 0) * Motor.SPEEDUP_INTERVAL_RPM;
 
-        if(oldRpm != this.rpm){
+        if (oldRpm != this.rpm) {
             firePropertyChangeEvent(
                     new PropertyChangeEvent(this, "motorRpm", oldRpm, this.rpm)
             );

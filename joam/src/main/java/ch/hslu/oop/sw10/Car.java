@@ -24,12 +24,12 @@ public class Car implements Switchable {
 
     private class MotorPropertyChangeListener implements PropertyChangeListener {
         @Override
-        public void propertyChange(PropertyChangeEvent e){
+        public void propertyChange(PropertyChangeEvent e) {
             Car.this.handleMotorEvents(e);
         }
     }
 
-    public Car(){
+    public Car() {
         this.motor = new Motor(new Car.MotorPropertyChangeListener());
         this.wiper = new Wiper();
 
@@ -37,17 +37,17 @@ public class Car implements Switchable {
         this.switchableComponents.add(this.wiper);
     }
 
-    public void speedUp(){
+    public void speedUp() {
         this.motor.speedUp();
     }
 
-    public void slowDown(){
+    public void slowDown() {
         this.motor.slowDown();
     }
 
     @Override
     public void switchOn() {
-        for (final Switchable component: this.switchableComponents) {
+        for (final Switchable component : this.switchableComponents) {
             component.switchOn();
         }
 
@@ -56,7 +56,7 @@ public class Car implements Switchable {
 
     @Override
     public void switchOff() {
-        for (final Switchable component: this.switchableComponents) {
+        for (final Switchable component : this.switchableComponents) {
             component.switchOff();
         }
 
@@ -73,17 +73,17 @@ public class Car implements Switchable {
         return (this.carState.equals(ComponentState.OFF));
     }
 
-    private void handleMotorEvents(PropertyChangeEvent e){
+    private void handleMotorEvents(PropertyChangeEvent evt) {
         LOG.debug("Car received an Event from the Motor!");
-        if(e.getPropertyName().equals("motorRpm")){
+        if (evt.getPropertyName().equals("motorRpm")) {
             LOG.info(String.format(
                     "Event: The motor RPM changed from [%s] to [%s]",
-                    e.getOldValue().toString(),
-                    e.getNewValue().toString()
+                    evt.getOldValue().toString(),
+                    evt.getNewValue().toString()
             ));
-        } else if (e.getPropertyName().equals("motorState")) {
-            LOG.info(String.format("Event: New state of the motor: %s", e.getNewValue().toString()));
+        } else if (evt.getPropertyName().equals("motorState")) {
+            LOG.info(String.format("Event: New state of the motor: %s", evt.getNewValue().toString()));
         }
     }
-    
+
 }

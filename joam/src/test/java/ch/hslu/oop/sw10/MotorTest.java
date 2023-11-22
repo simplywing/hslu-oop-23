@@ -5,6 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -41,6 +46,7 @@ class MotorTest {
     @Disabled
     @Test
     void getRpm() {
+        /* indirectly tested with speedUp and slowDown tests */
     }
 
     @Test
@@ -68,11 +74,16 @@ class MotorTest {
         var myMotor = new Motor();
         myMotor.addPropertyChangeListener(new PropertyChangeListener() {
 
-            /* Proof that outer class attributes can be shadowed :) */
+            /* Proof that outer class attributes can be shadowed, see below :) */
             private boolean callbackWasCalled;
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
+
+                /* Because callbackWasCalled is shadowed in the inner class, we have to access the outer
+                * Class by using the ClassName.this.property syntax
+                * otherwise we could use callbackWasCalled directly */
                 MotorTest.this.callbackWasCalled = true;
+
                 assertEquals("motorState", evt.getPropertyName());
                 assertEquals(ComponentState.ON, evt.getNewValue());
             }
@@ -80,6 +91,23 @@ class MotorTest {
 
         myMotor.switchOn();
         assertTrue(this.callbackWasCalled);
+    }
+
+    @Test
+    void addPropertyChangeListenerMotorStateAlternative() {
+        var myMotor = new Motor();
+        AtomicBoolean callbackWasCalled = new AtomicBoolean(false);
+        myMotor.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                callbackWasCalled.set(true);
+                assertEquals("motorState", evt.getPropertyName());
+                assertEquals(ComponentState.ON, evt.getNewValue());
+            }
+        });
+
+        myMotor.switchOn();
+        assertTrue(callbackWasCalled.getPlain());
     }
 
     @Test
@@ -97,6 +125,31 @@ class MotorTest {
 
         myMotor.switchOn();
         assertTrue(this.callbackWasCalled);
+    }
+
+    @Test
+    void addPropertyChangeListenerMotorStateLambdaWithAtomicBool() {
+        var myMotor = new Motor();
+
+        /* Besten Dank an Frau Junghans für die Idee mit dem AtomicBoolean :) */
+        AtomicBoolean callbackWasCalledAtomic = new AtomicBoolean(false);
+
+        /* Instead of an AtomicBoolean we cloud use any effectively final type */
+        List<Boolean> thisIsJustaTest = new ArrayList<>();
+
+        myMotor.addPropertyChangeListener(
+                evt -> {
+                    callbackWasCalledAtomic.set(true);
+                    thisIsJustaTest.add(Boolean.TRUE);
+
+                    assertEquals("motorState", evt.getPropertyName());
+                    assertEquals(ComponentState.ON, evt.getNewValue());
+                }
+        );
+
+        myMotor.switchOn();
+        assertTrue(callbackWasCalledAtomic.getPlain());
+        assertTrue(thisIsJustaTest.get(0));
     }
 
     @Test
