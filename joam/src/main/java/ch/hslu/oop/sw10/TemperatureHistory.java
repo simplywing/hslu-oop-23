@@ -43,32 +43,30 @@ public final class TemperatureHistory implements MeasurementHistory<Temperature>
 
     @Override
     public Optional<Temperature> getMax() {
-        if(this.getCount() > 0){
+        if (this.getCount() > 0) {
             return Optional.of(new Temperature(Collections.max(this.temps)));
-        } 
-        else {
+        } else {
             return Optional.empty();
         }
     }
 
     @Override
     public Optional<Temperature> getMin() {
-        if(this.getCount() > 0){
+        if (this.getCount() > 0) {
             return Optional.of(new Temperature(Collections.min(this.temps)));
-        } 
-        else {
+        } else {
             return Optional.empty();
         }
     }
 
     @Override
     public Optional<Temperature> getAverage() {
-        if(this.temps.isEmpty()){
+        if (this.temps.isEmpty()) {
             return Optional.empty();
         }
 
         double tempSum = 0.0;
-        for(final Temperature t : this.temps) {
+        for (final Temperature t : this.temps) {
             tempSum += t.getCelsius();
         }
         float average = (float) (tempSum / this.temps.size());
@@ -76,51 +74,30 @@ public final class TemperatureHistory implements MeasurementHistory<Temperature>
         return Optional.of(new Temperature(average));
     }
 
-    public void addTemperatureEventListener(TemperatureEventListener listener){
-        if(null != listener)
+    public void addTemperatureEventListener(TemperatureEventListener listener) {
+        if (null != listener)
             this.listeners.add(listener);
     }
 
-    public void removeTemperatureEventListener(TemperatureEventListener listener){
-        if(null != listener)
+    public void removeTemperatureEventListener(TemperatureEventListener listener) {
+        if (null != listener)
             this.listeners.remove(listener);
     }
 
-    public void fireTemperatureEvent(TemperatureEvent evt){
-        for (final TemperatureEventListener listener:
-             this.listeners ) {
+    public void fireTemperatureEvent(TemperatureEvent evt) {
+        for (final TemperatureEventListener listener :
+                this.listeners) {
             listener.temperatureExtremaChange(evt);
         }
     }
 
-    private void testTemperatureExtrema(Temperature temp){
-        if (null == temp){
+    private void testTemperatureExtrema(Temperature temp) {
+        if (null == temp) {
             return;
         }
 
-        boolean newMin = false;
-        boolean newMax = false;
-
-        if(null == this.minTemp){
-            this.minTemp = temp;
-            newMin = true;
-        }
-        if(null == this.maxTemp){
-            this.maxTemp = temp;
-            newMax = true;
-        }
-
-        if(temp.compareTo(this.minTemp) < 0) {
+        if (null == this.minTemp || temp.compareTo(this.minTemp) < 0) {
             this.minTemp = new Temperature(temp);
-            newMin = true;
-        }
-
-        if (temp.compareTo(this.maxTemp) > 0){
-            this.maxTemp = new Temperature(temp);
-            newMax = true;
-        }
-
-        if (newMin){
             fireTemperatureEvent(new TemperatureEvent(
                     this,
                     TemperatureEventType.MIN,
@@ -128,7 +105,8 @@ public final class TemperatureHistory implements MeasurementHistory<Temperature>
             ));
         }
 
-        if (newMax){
+        if (null == this.maxTemp || temp.compareTo(this.maxTemp) > 0) {
+            this.maxTemp = new Temperature(temp);
             fireTemperatureEvent(new TemperatureEvent(
                     this,
                     TemperatureEventType.MAX,

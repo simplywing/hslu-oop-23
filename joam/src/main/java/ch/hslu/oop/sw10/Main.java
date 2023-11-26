@@ -9,7 +9,6 @@ public class Main {
 
     public static final Logger LOG = LoggerFactory.getLogger(Main.class);
 
-
     public static void main(String[] args) {
         String input;
         Scanner scanner = new Scanner(System.in);
@@ -32,8 +31,10 @@ public class Main {
                     LOG.info(String.format("Average Temp: %s", tempHistory.getAverage().get()));
                     LOG.info(String.format("Min: %s, Max: %s", tempHistory.getMin().get(), tempHistory.getMax().get()));
                 }
-            }
-            else {
+            } else if ("clear".equals(input)) {
+                tempHistory.clear();
+                LOG.info("Temp history cleared.");
+            } else {
                 try {
                     float value = Float.parseFloat(input);
                     var temp = Temperature.fromCelsius(value);

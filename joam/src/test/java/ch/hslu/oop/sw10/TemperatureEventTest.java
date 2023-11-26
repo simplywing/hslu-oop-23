@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TemperatureEventTest {
-
     private static final Logger LOG = LoggerFactory.getLogger(TemperatureEventTest.class);
     @Test
     public void testTemperatureEvent(){
