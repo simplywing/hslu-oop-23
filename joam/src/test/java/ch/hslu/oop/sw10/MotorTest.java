@@ -43,12 +43,6 @@ class MotorTest {
         assertTrue((new Motor()).isSwitchedOff());
     }
 
-    @Disabled
-    @Test
-    void getRpm() {
-        /* indirectly tested with speedUp and slowDown tests */
-    }
-
     @Test
     void speedUp() {
         var myMotor = new Motor();
