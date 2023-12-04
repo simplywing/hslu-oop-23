@@ -1,10 +1,10 @@
-package ch.hslu.oop.sw10;
+package ch.hslu.oop.sw11;
 
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TemperatureEventTest {
     private static final Logger LOG = LoggerFactory.getLogger(TemperatureEventTest.class);

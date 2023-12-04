@@ -61,6 +61,7 @@ public class Temperature implements Comparable<Temperature> {
         System.out.println("Temperature Object -> celsius: " + this.celsius);
     }
 
+    @Override
     public String toString(){
         return String.format("Temperature[celsius=%s]", this.celsius);
     }

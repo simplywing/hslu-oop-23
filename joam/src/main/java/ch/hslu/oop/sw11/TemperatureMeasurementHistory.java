@@ -1,26 +1,26 @@
-package ch.hslu.oop.sw10;
+package ch.hslu.oop.sw11;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
-public final class TemperatureHistory implements MeasurementHistory<Temperature> {
+public final class TemperatureMeasurementHistory implements MeasurementHistory<TemperatureMeasurement> {
 
-    private final Collection<Temperature> temps = new ArrayList<>();
-    private Temperature minTemp;
-    private Temperature maxTemp;
+    private final Collection<TemperatureMeasurement> temps = new ArrayList<>();
+    private TemperatureMeasurement minTemp;
+    private TemperatureMeasurement maxTemp;
 
     private final List<TemperatureEventListener> listeners = new ArrayList<>();
 
-    private static final Logger LOG = LoggerFactory.getLogger(TemperatureHistory.class);
+    private static final Logger LOG = LoggerFactory.getLogger(TemperatureMeasurementHistory.class);
 
-    public TemperatureHistory() {
+    public TemperatureMeasurementHistory() {
 
     }
 
     @Override
-    public void add(Temperature temp) {
+    public void add(TemperatureMeasurement temp) {
         LOG.debug(String.format("adding temperature: %s", temp.toString()));
 
         this.temps.add(temp);
@@ -42,36 +42,36 @@ public final class TemperatureHistory implements MeasurementHistory<Temperature>
     }
 
     @Override
-    public Optional<Temperature> getMax() {
+    public Optional<TemperatureMeasurement> getMax() {
         if (this.getCount() > 0) {
-            return Optional.of(new Temperature(Collections.max(this.temps)));
+            return Optional.of(Collections.max(this.temps));
         } else {
             return Optional.empty();
         }
     }
 
     @Override
-    public Optional<Temperature> getMin() {
+    public Optional<TemperatureMeasurement> getMin() {
         if (this.getCount() > 0) {
-            return Optional.of(new Temperature(Collections.min(this.temps)));
+            return Optional.of(Collections.min(this.temps));
         } else {
             return Optional.empty();
         }
     }
 
     @Override
-    public Optional<Temperature> getAverage() {
+    public Optional<TemperatureMeasurement> getAverage() {
         if (this.temps.isEmpty()) {
             return Optional.empty();
         }
 
         double tempSum = 0.0;
-        for (final Temperature t : this.temps) {
-            tempSum += t.getCelsius();
+        for (final TemperatureMeasurement t : this.temps) {
+            tempSum += t.measurement().getCelsius();
         }
         float average = (float) (tempSum / this.temps.size());
 
-        return Optional.of(new Temperature(average));
+        return Optional.of(new TemperatureMeasurement(null, Temperature.fromCelsius(average)));
     }
 
     public void addTemperatureEventListener(TemperatureEventListener listener) {
@@ -91,26 +91,26 @@ public final class TemperatureHistory implements MeasurementHistory<Temperature>
         }
     }
 
-    private void testTemperatureExtrema(Temperature temp) {
+    private void testTemperatureExtrema(TemperatureMeasurement temp) {
         if (null == temp) {
             return;
         }
 
         if (null == this.minTemp || temp.compareTo(this.minTemp) < 0) {
-            this.minTemp = new Temperature(temp);
+            this.minTemp = temp;
             fireTemperatureEvent(new TemperatureEvent(
                     this,
                     TemperatureEventType.MIN,
-                    new Temperature(this.minTemp)
+                    new Temperature(this.minTemp.measurement())
             ));
         }
 
         if (null == this.maxTemp || temp.compareTo(this.maxTemp) > 0) {
-            this.maxTemp = new Temperature(temp);
+            this.maxTemp = temp;
             fireTemperatureEvent(new TemperatureEvent(
                     this,
                     TemperatureEventType.MAX,
-                    new Temperature(this.maxTemp)
+                    new Temperature(this.maxTemp.measurement())
             ));
         }
     }

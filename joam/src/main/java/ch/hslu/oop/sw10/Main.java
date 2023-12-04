@@ -15,7 +15,7 @@ public class Main {
 
         TemperatureHistory tempHistory = new TemperatureHistory();
         tempHistory.addTemperatureEventListener(new TemperatureEventListener() {
-                public void temperatureExtremaChange(TemperatureEvent evt){
+                public void temperatureExtremaChanged(TemperatureEvent evt){
                     LOG.info(evt.toString());
                 }
             }
