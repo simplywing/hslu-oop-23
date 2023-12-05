@@ -3,7 +3,15 @@ package ch.hslu.oop.sw11;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public record TemperatureMeasurement(LocalDateTime timestamp, Temperature measurement) implements Comparable<TemperatureMeasurement> {
+public record TemperatureMeasurement(LocalDateTime timestamp,
+                                     Temperature measurement) implements Comparable<TemperatureMeasurement> {
+
+    @Override
+    public TemperatureMeasurement clone() {
+        var copy = new TemperatureMeasurement(this.timestamp, this.measurement);
+        return copy;
+    }
+
     @Override
     public String toString() {
         return "TemperatureMeasurement{" +
@@ -14,7 +22,7 @@ public record TemperatureMeasurement(LocalDateTime timestamp, Temperature measur
 
     @Override
     public int compareTo(TemperatureMeasurement o) {
-        return this.measurement.compareTo(o.measurement());
+        return this.measurement.compareTo(o.measurement);
     }
 
     @Override

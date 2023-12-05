@@ -44,7 +44,7 @@ public final class TemperatureMeasurementHistory implements MeasurementHistory<T
     @Override
     public Optional<TemperatureMeasurement> getMax() {
         if (this.getCount() > 0) {
-            return Optional.of(Collections.max(this.temps));
+            return Optional.of(Collections.max(this.temps).clone());
         } else {
             return Optional.empty();
         }
@@ -53,7 +53,7 @@ public final class TemperatureMeasurementHistory implements MeasurementHistory<T
     @Override
     public Optional<TemperatureMeasurement> getMin() {
         if (this.getCount() > 0) {
-            return Optional.of(Collections.min(this.temps));
+            return Optional.of(Collections.min(this.temps).clone());
         } else {
             return Optional.empty();
         }

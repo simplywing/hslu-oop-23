@@ -56,14 +56,14 @@ public final class IOStreamsDemo {
     }
 
     public byte[] readNBytesFromBinFile(final int byteCount, final String file) {
-        byte[] bytes = {0x0, 0x0, 0x0, 0x0};
+        byte[] bytes = {0x0};
 
         try (FileInputStream fis = new FileInputStream(file)) {
             bytes = fis.readNBytes(byteCount);
 
             StringBuilder hexString = new StringBuilder();
             for (byte b : bytes) {
-                hexString.append(String.format("%02x", b & 0xff)).append(" ");
+                hexString.append(String.format("%02x", b)).append(" ");
             }
 
             LOG.info(String.format("FileInputStream.readNBytes(%s) -> %s", byteCount, Arrays.toString(bytes)));

@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
@@ -17,7 +18,7 @@ public final class TemperatureMeasurementParser {
 
     private Logger LOG = LoggerFactory.getLogger(TemperatureMeasurementParser.class);
 
-    public static TemperatureMeasurementParser of(String filePath){
+    public static TemperatureMeasurementParser of(String filePath) {
         var parser = new TemperatureMeasurementParser();
         parser.setFilePath(filePath);
         return parser;
@@ -31,33 +32,31 @@ public final class TemperatureMeasurementParser {
         this.filePath = Path.of(filePath);
     }
 
-    public void printMeasurements(){
-        try (BufferedReader br = new BufferedReader(new FileReader(this.filePath.toFile(), StandardCharsets.UTF_8))){
+    public void printMeasurements() {
+        try (BufferedReader br = new BufferedReader(new FileReader(this.filePath.toFile(), StandardCharsets.UTF_8))) {
             br.lines()
                     .map(this::extractMeasurement)
                     .forEach(System.out::println);
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             LOG.error(e.toString());
         }
     }
 
-    public TemperatureMeasurementHistory getTemperatureMeasurementHistory(){
+    public TemperatureMeasurementHistory getTemperatureMeasurementHistory() {
         var history = new TemperatureMeasurementHistory();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(this.filePath.toFile(), StandardCharsets.UTF_8))){
+        try (BufferedReader br = new BufferedReader(new FileReader(this.filePath.toFile(), StandardCharsets.UTF_8))) {
             br.lines()
                     .map(this::extractMeasurement)
                     .forEach(history::add);
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             LOG.error(e.toString());
         }
 
         return history;
     }
 
-    private TemperatureMeasurement extractMeasurement(final String line){
+    private TemperatureMeasurement extractMeasurement(final String line) {
         DateTimeFormatter DateTimeFormatter;
         return new TemperatureMeasurement(
                 LocalDateTime.parse(line.split(";")[1], java.time.format.DateTimeFormatter.ofPattern("\"yyyy/MM/dd HH:mm:ss\"")),
