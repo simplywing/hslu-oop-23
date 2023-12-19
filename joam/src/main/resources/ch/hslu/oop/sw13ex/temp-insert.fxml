@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+
+<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="200.0" minWidth="300.0" prefHeight="400.0"
+           prefWidth="600.0" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ch.hslu.oop.sw13ex.TempGuiController">
+   <BorderPane prefHeight="200.0" prefWidth="200.0">
+      <center>
+         <TableView fx:id="measurementTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <columns>
+            </columns>
+         </TableView>
+      </center>
+      <bottom>
+         <HBox prefHeight="34.0" prefWidth="598.0" BorderPane.alignment="CENTER">
+            <padding>
+               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+            </padding>
+            <TextField fx:id="textInputField"/>
+            <Separator orientation="VERTICAL" prefHeight="200.0"/>
+            <Button fx:id="addButton" mnemonicParsing="false" text="Add"/>
+            <Separator orientation="VERTICAL" prefHeight="200.0"/>
+            <Button fx:id="clearButton" mnemonicParsing="false" text="Clear"/>
+         </HBox>
+      </bottom>
+   </BorderPane>
+</SplitPane>
